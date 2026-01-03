@@ -233,10 +233,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogPhotosController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlacesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlogPhotos.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Blogs.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -735,9 +745,27 @@
     <Content Include="Views\Countries\List.cshtml" />
     <Content Include="Views\Countries\Create.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Cities\Create.cshtml" />
+    <Content Include="Views\Cities\Edit.cshtml" />
+    <Content Include="Views\Cities\List.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\List.cshtml" />
+    <Content Include="Views\Places\List.cshtml" />
+    <Content Include="Views\Places\Create.cshtml" />
+    <Content Include="Views\Places\Edit.cshtml" />
+    <Content Include="Views\Blogs\List.cshtml" />
+    <Content Include="Views\Blogs\Create.cshtml" />
+    <Content Include="Views\Blogs\Edit.cshtml" />
+    <Content Include="Views\BlogPhotos\List.cshtml" />
+    <Content Include="Views\BlogPhotos\Create.cshtml" />
+    <Content Include="Views\BlogPhotos\Edit.cshtml" />
+    <Content Include="Views\Comments\List.cshtml" />
+    <Content Include="Views\Users\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

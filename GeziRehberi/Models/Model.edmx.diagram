@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a755b978cfc14a0c8d93c404fcce9f0e" Name="Diagram1">
+      <Diagram DiagramId="87a11b5d3d994a2098134e4e925b8c8d" Name="Diagram1">
         <EntityTypeShape EntityType="GeziRehberiModel.Blogs" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeziRehberiModel.Categories" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeziRehberiModel.Cities" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
@@ -22,6 +22,8 @@
         <AssociationConnector Association="GeziRehberiModel.FK_Places_Cities" ManuallyRouted="false" />
         <AssociationConnector Association="GeziRehberiModel.FK_Ratings_Places" ManuallyRouted="false" />
         <AssociationConnector Association="GeziRehberiModel.FK_Ratings_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GeziRehberiModel.BlogPhotos" Width="1.5" PointX="9.375" PointY="0.75" />
+        <AssociationConnector Association="GeziRehberiModel.FK_BlogPhotos_Blogs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
