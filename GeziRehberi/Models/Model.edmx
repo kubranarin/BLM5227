@@ -113,6 +113,7 @@
           <Property Name="ProfilePhoto" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_BlogPhotos_Blogs">
           <End Role="BlogPhotos" Type="Self.BlogPhotos" Multiplicity="1" />
@@ -392,19 +393,6 @@
           <NavigationProperty Name="Ratings11" Relationship="Self.FK_Ratings_Users" FromRole="Ratings" ToRole="Ratings1" />
           <NavigationProperty Name="Ratings3" Relationship="Self.FK_Ratings_Users" FromRole="Ratings1" ToRole="Ratings" />
         </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProfilePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
-          <Property Name="IsActive" Type="Boolean" />
-        </EntityType>
         <Association Name="FK_Blogs_Places">
           <End Role="Blogs" Type="Self.Blogs" Multiplicity="1" />
           <End Role="Blogs1" Type="Self.Blogs" Multiplicity="0..1" />
@@ -521,7 +509,6 @@
           <EntitySet Name="Countries" EntityType="Self.Countries" />
           <EntitySet Name="Places" EntityType="Self.Places" />
           <EntitySet Name="Ratings" EntityType="Self.Ratings" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Blogs_Places" Association="Self.FK_Blogs_Places">
             <End Role="Blogs" EntitySet="Blogs" />
             <End Role="Blogs1" EntitySet="Blogs" />
@@ -563,6 +550,7 @@
             <End Role="BlogPhotos" EntitySet="BlogPhotos" />
             <End Role="BlogPhotos1" EntitySet="BlogPhotos" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="GeziRehberiModel.Users" />
         </EntityContainer>
         <EntityType Name="BlogPhotos">
           <Key>
@@ -589,6 +577,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -687,20 +689,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="GeziRehberiModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BlogPhotos">
             <EntityTypeMapping TypeName="GeziRehberiModel.BlogPhotos">
               <MappingFragment StoreEntitySet="BlogPhotos">
@@ -709,6 +697,21 @@
                 <ScalarProperty Name="IsCover" ColumnName="IsCover" />
                 <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
                 <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GeziRehberiModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

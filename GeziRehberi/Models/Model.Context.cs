@@ -32,7 +32,7 @@ namespace GeziRehberi.Models
         public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<Places> Places { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<BlogPhotos> BlogPhotos { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

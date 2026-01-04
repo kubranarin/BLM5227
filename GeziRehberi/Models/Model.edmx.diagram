@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="GeziRehberiModel.Countries" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeziRehberiModel.Places" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GeziRehberiModel.Ratings" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GeziRehberiModel.Users" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="GeziRehberiModel.FK_Blogs_Places" ManuallyRouted="false" />
         <AssociationConnector Association="GeziRehberiModel.FK_Blogs_Users" ManuallyRouted="false" />
         <AssociationConnector Association="GeziRehberiModel.FK_Cities_Countries" ManuallyRouted="false" />
@@ -24,6 +23,7 @@
         <AssociationConnector Association="GeziRehberiModel.FK_Ratings_Users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="GeziRehberiModel.BlogPhotos" Width="1.5" PointX="9.375" PointY="0.75" />
         <AssociationConnector Association="GeziRehberiModel.FK_BlogPhotos_Blogs" />
+        <EntityTypeShape EntityType="GeziRehberiModel.Users" Width="1.5" PointX="7.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

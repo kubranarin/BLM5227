@@ -22,5 +22,6 @@ namespace GeziRehberi.Models
         public string ProfilePhoto { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string Password { get; set; }
     }
 }
