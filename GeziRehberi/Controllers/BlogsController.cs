@@ -1,4 +1,6 @@
-﻿using GeziRehberi.Models;
+﻿using GeziRehberi.Helper;
+using GeziRehberi.Models;
+using GeziRehberi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GeziRehberi.Models;
 
 namespace GeziRehberi.Controllers
 {
@@ -15,6 +16,7 @@ namespace GeziRehberi.Controllers
         private GeziRehberiEntities db = new GeziRehberiEntities();
 
         // GET: Blogs
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
             var blogs = db.Blogs.ToList();
@@ -37,7 +39,7 @@ namespace GeziRehberi.Controllers
             }
             return View(blog);
         }
-
+        [CustomAuthorize(Roles = "Admin,User")]
         // GET: Blogs/Create
         public ActionResult Create()
         {
@@ -66,7 +68,7 @@ namespace GeziRehberi.Controllers
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", blog.UserId);
             return View(blog);
         }
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

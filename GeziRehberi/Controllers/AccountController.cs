@@ -39,9 +39,12 @@ namespace GeziRehberi.Controllers
                         {
                             Username = model.Username,
                             Email = model.Email,
+                            Name = model.Name,
+                            Surname = model.Surname,
                             CreatedDate = DateTime.Now,
                             IsActive = true,
                             Password = model.Password,
+                            Role = 2 // Varsayılan rol: Kullanıcı
                         };
 
                         db.Users.Add(user);
@@ -107,9 +110,11 @@ namespace GeziRehberi.Controllers
                             }
                             else
                             {
+                                string roleString = user.Role == 1 ? "Admin" : "User";
                                 Session["UserId"] = user.Id;
                                 Session["Username"] = user.Username;
                                 Session["Email"] = user.Email;
+                                Session["Role"] = roleString;
 
                                 TempData["SuccessMessage"] = "Giriş Başarılı! Hoşgeldiniz!";
                                 return RedirectToAction("Index", "Home");
@@ -131,7 +136,15 @@ namespace GeziRehberi.Controllers
 
             return View(model);
         }
- 
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+            TempData["SuccessMessage"] = "Başarıyla çıkış yaptınız.";
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 }
 

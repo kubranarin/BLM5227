@@ -1,4 +1,5 @@
-﻿using GeziRehberi.Models;
+﻿using GeziRehberi.Helper;
+using GeziRehberi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,7 +15,7 @@ namespace GeziRehberi.Controllers
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
 
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
             var places = db.Places.ToList();
@@ -38,7 +39,7 @@ namespace GeziRehberi.Controllers
             return View(place);
         }
 
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
@@ -81,7 +82,7 @@ namespace GeziRehberi.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", place.CategoryId);
             return View(place);
         }
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

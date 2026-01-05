@@ -1,4 +1,5 @@
-﻿using GeziRehberi.Models;
+﻿using GeziRehberi.Helper;
+using GeziRehberi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,13 +14,13 @@ namespace GeziRehberi.Controllers
     public class CountriesController : Controller
     {
       private GeziRehberiEntities db= new GeziRehberiEntities();
-        
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult List()
         {
             var countries = db.Countries.ToList();
             return View(countries);
         }
-
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -40,7 +41,7 @@ namespace GeziRehberi.Controllers
 
             return View(country);
         }
-
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

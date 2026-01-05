@@ -114,6 +114,7 @@
           <Property Name="CreatedDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="tinyint" />
         </EntityType>
         <Association Name="FK_BlogPhotos_Blogs">
           <End Role="BlogPhotos" Type="Self.BlogPhotos" Multiplicity="1" />
@@ -590,6 +591,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Byte" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -704,6 +706,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="GeziRehberiModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

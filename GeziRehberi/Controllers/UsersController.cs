@@ -11,7 +11,7 @@ namespace GeziRehberi.Controllers
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
 
-        // GET: Users
+        [Authorize(Roles = "Admin")]
         public ActionResult List()
         {
             var users = db.Users.OrderByDescending(u => u.CreatedDate).ToList();

@@ -23,5 +23,6 @@ namespace GeziRehberi.Models
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Password { get; set; }
+        public Nullable<byte> Role { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GeziRehberi.Models;
+﻿using GeziRehberi.Helper;
+using GeziRehberi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,13 +15,13 @@ namespace GeziRehberi.Controllers
     public class CategoriesController : Controller
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
             var categories = db.Categories.ToList();
             return View(categories);
         }
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Create()
         {
             return View();
@@ -41,7 +42,7 @@ namespace GeziRehberi.Controllers
 
             return View(category);
         }
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

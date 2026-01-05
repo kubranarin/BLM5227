@@ -1,4 +1,5 @@
-﻿using GeziRehberi.Models;
+﻿using GeziRehberi.Helper;
+using GeziRehberi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,7 +15,7 @@ namespace GeziRehberi.Controllers
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
 
-       
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
             var blogPhotos = db.BlogPhotos.ToList();
@@ -37,7 +38,7 @@ namespace GeziRehberi.Controllers
             return View(blogPhoto);
         }
 
-
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Create()
         {
             ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Title");
@@ -102,6 +103,7 @@ namespace GeziRehberi.Controllers
         }
 
         // GET: BlogPhotos/Edit/5
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -160,6 +162,7 @@ namespace GeziRehberi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Delete(int id)
         {
             BlogPhotos blogPhoto = db.BlogPhotos.Find(id);
