@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Kayıt Ol";
 }
 
 <!-- login-area-start -->
@@ -30,47 +31,47 @@
                             {
                                 @Html.AntiForgeryToken()
 
-                            <div class="row">
-                                <div class="col-lg-12 mb-25">
-                                    @Html.TextBoxFor(m => m.Username, new { @class = "input", placeholder = "Kullanıcı Adı" })
-                                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="col-lg-12 mb-25">
-                                    @Html.TextBoxFor(m => m.Name, new { @class = "input", placeholder = "Ad", id="Name" })
-                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="col-lg-12 mb-25">
-                                    @Html.TextBoxFor(m => m.Surname, new { @class = "input", placeholder = "Soyad", id="Surname"})
-                                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
-                                </div>
-
-                                <div class="col-lg-12 mb-25">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "input", type = "email", placeholder = "E-Mail Adresi" })
-                                    <span class="validation-tooltip" id="emailTooltip" style="display: none;">Email formatında giriş yapınız</span>
-                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                </div>
-
-                                <div class="col-lg-12 mb-25 password-field-wrapper">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "input", placeholder = "Şifre", @id = "Password" })
-                                    <span class="password-toggle-icon" id="passwordToggle" title="Show/Hide Password">
-                                        <span id="eyeIcon">👁️</span>
-                                    </span>
-                                    <span class="validation-tooltip" id="passwordTooltip" style="display: none;">Maksimum 8 karakter girebilirsiniz</span>
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                </div>
-
-
-
-                                <div class="col-lg-12">
-                                    <div class="d-flex align-items-center justify-content-between">
-
-                                        <div class="tg-login-navigate mb-25">
-                                            <a href="@Url.Action("Login", "Account")">Giriş</a>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-25">
+                                        @Html.TextBoxFor(m => m.Username, new { @class = "input", placeholder = "Kullanıcı Adı" })
+                                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                                     </div>
-                                    <button type="submit" class="tg-btn w-100" id="submitBtn">Kayıt Ol</button>
+                                    <div class="col-lg-12 mb-25">
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "input", placeholder = "Ad", id = "Name" })
+                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-12 mb-25">
+                                        @Html.TextBoxFor(m => m.Surname, new { @class = "input", placeholder = "Soyad", id = "Surname" })
+                                        @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-lg-12 mb-25">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "input", type = "email", placeholder = "E-Mail Adresi" })
+                                        <span class="validation-tooltip" id="emailTooltip" style="display: none;">Email formatında giriş yapınız</span>
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-lg-12 mb-25 password-field-wrapper">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "input", placeholder = "Şifre", @id = "Password" })
+                                        <span class="password-toggle-icon" id="passwordToggle" title="Show/Hide Password">
+                                            <span id="eyeIcon">👁️</span>
+                                        </span>
+                                        <span class="validation-tooltip" id="passwordTooltip" style="display: none;">Maksimum 8 karakter girebilirsiniz</span>
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+
+
+                                    <div class="col-lg-12">
+                                        <div class="d-flex align-items-center justify-content-between">
+
+                                            <div class="tg-login-navigate mb-25">
+                                                <a href="@Url.Action("Login", "Account")">Giriş</a>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="tg-btn w-100" id="submitBtn">Kayıt Ol</button>
+                                    </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>
@@ -138,7 +139,7 @@
             }
         }
 
-    
+
         function validateEmail(email) {
             var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
             return emailRegex.test(email);
@@ -172,7 +173,7 @@
             var emailTooltip = document.getElementById('emailTooltip');
 
             if (emailField && emailTooltip) {
-                emailField.addEventListener('blur', function() {
+                emailField.addEventListener('blur', function () {
                     var email = emailField.value.trim();
                     if (email && !validateEmail(email)) {
                         emailTooltip.style.display = 'block';
@@ -183,7 +184,7 @@
                     }
                 });
 
-                emailField.addEventListener('input', function() {
+                emailField.addEventListener('input', function () {
                     var email = emailField.value.trim();
                     if (email && !validateEmail(email)) {
                         emailTooltip.style.display = 'block';
@@ -236,7 +237,7 @@
         function initFormValidation() {
             var form = document.getElementById('registerForm');
             if (form) {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', function (e) {
                     var emailField = document.getElementById('Email');
                     var passwordField = document.getElementById('Password');
                     var isValid = true;

@@ -246,6 +246,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Models\BlogCardViewModel.cs" />
     <Compile Include="Models\BlogPhotos.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -762,6 +763,7 @@
     <Content Include="Views\Users\List.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

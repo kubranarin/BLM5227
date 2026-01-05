@@ -11,12 +11,60 @@ namespace GeziRehberi.Controllers
     public class HomeController : Controller
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
-        [CustomAuthorize(Roles ="Admin,User")]
+
+        [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult Index()
         {
             var countries = db.Countries.ToList();
             ViewBag.Countries = countries;
-            return View();
+            var blogs =
+              (from b in db.Blogs
+               join u in db.Users on b.UserId equals u.Id into gu
+               from u in gu.DefaultIfEmpty()              // ← LEFT JOIN
+               join p in db.BlogPhotos on b.Id equals p.BlogId into gp
+               from photo in gp.OrderBy(p => p.Id).Take(1).DefaultIfEmpty()
+               orderby b.CreatedDate descending
+               select new BlogCardViewModel
+               {
+                   Id = b.Id,
+                   Title = b.Title,
+                   CreatedDate = b.CreatedDate,
+                   Article = b.Article,
+                   Author = (u != null ? (u.Name + " " + u.Surname) : "Admin"),
+                   CoverPhoto = photo != null ? photo.PhotoUrl : null
+               })
+              .Take(12)
+              .ToList();
+
+
+            return View(blogs);
+        }
+        public ActionResult Detail(int id)
+        {
+            var blog =
+        (from b in db.Blogs
+         join u in db.Users on b.UserId equals u.Id into gu
+         from u in gu.DefaultIfEmpty()
+         join p in db.BlogPhotos on b.Id equals p.BlogId into gp
+         from photo in gp.OrderBy(p => p.Id).Take(1).DefaultIfEmpty()
+
+         where b.Id == id
+
+         select new BlogCardViewModel
+         {
+             Id = b.Id,
+             Title = b.Title,
+             CreatedDate = b.CreatedDate,
+             Article = b.Article,
+             Author = (u != null ? (u.Name + " " + u.Surname) : "Admin"),
+             CoverPhoto = photo != null ? photo.PhotoUrl : null
+         })
+        .FirstOrDefault();
+
+            if (blog == null)
+                return HttpNotFound();
+
+            return View(blog);
         }
 
         public ActionResult GetCities(int countryId)
