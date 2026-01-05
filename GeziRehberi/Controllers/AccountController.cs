@@ -110,7 +110,7 @@ namespace GeziRehberi.Controllers
                             }
                             else
                             {
-                                string roleString = user.Role == 1 ? "Admin" : "User";
+                                string roleString = user.Role == 1 ? "Admin" :  user.Role == 2 ? "User" :   "";
                                 Session["UserId"] = user.Id;
                                 Session["Username"] = user.Username;
                                 Session["Email"] = user.Email;

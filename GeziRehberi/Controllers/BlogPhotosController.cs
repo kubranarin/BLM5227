@@ -21,7 +21,7 @@ namespace GeziRehberi.Controllers
         public ActionResult List()
         {
             var userId = Convert.ToInt32(Session["UserId"]);
-            var userRole = Session["Roles"];
+            var userRole = Session["Role"];
             if (userRole == "Admin")
             {
                 blogPhotos = db.BlogPhotos.ToList();

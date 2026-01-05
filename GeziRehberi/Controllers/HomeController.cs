@@ -79,8 +79,37 @@ namespace GeziRehberi.Controllers
                            .ToList();
 
             return Json(cities, JsonRequestBehavior.AllowGet);
-        }
+        }  
+        public JsonResult SearchBlogs(int? countryId, int? cityId)
+        {
+            var blogs =
+            (from b in db.Blogs
+             join pl in db.Places on b.PlaceId equals pl.Id
+             join ct in db.Cities on pl.CityId equals ct.Id
+             join u in db.Users on b.UserId equals u.Id into gu
+             from u in gu.DefaultIfEmpty()
+             join p in db.BlogPhotos on b.Id equals p.BlogId into gp
+             from photo in gp.OrderBy(p => p.Id).Take(1).DefaultIfEmpty()
 
+             where (!countryId.HasValue || ct.CountryId == countryId)
+                && (!cityId.HasValue || pl.CityId == cityId)
+
+             orderby b.CreatedDate descending
+
+             select new BlogCardViewModel
+             {
+                 Id = b.Id,
+                 Title = b.Title,
+                 Article = b.Article,
+                 CreatedDate = b.CreatedDate,
+                 Author = (u != null ? (u.Name + " " + u.Surname) : "Admin"),
+                 CoverPhoto = photo != null ? photo.PhotoUrl : null
+             })
+            .ToList();
+
+
+            return Json(blogs, JsonRequestBehavior.AllowGet);
+        }
 
 
     }
