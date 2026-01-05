@@ -79,7 +79,7 @@
                                             <img src="@item.PhotoUrl" style="width:50px;height:50px;" />
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-warning">
+                                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-success">
                                                 <i class="mdi mdi-pencil"></i> Düzenle
                                             </a>
                                             @using (Html.BeginForm("Delete", "Places", new { id = item.Id }, FormMethod.Post, new { @class = "d-inline", onsubmit = "return confirm('Bu yeri silmek istediğinize emin misiniz?');" }))

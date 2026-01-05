@@ -14,12 +14,21 @@ namespace GeziRehberi.Controllers
     public class BlogsController : Controller
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
-
+        public  List<Blogs> blogs = new List<Blogs>();
         // GET: Blogs
         [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
-            var blogs = db.Blogs.ToList();
+            var userId = Convert.ToInt32(Session["UserId"]);
+            var userRole = Session["Roles"];
+            if (userRole == "Admin")
+            {
+                blogs = db.Blogs.ToList();
+            }
+            else
+            {
+                blogs = db.Blogs.Where(b => b.UserId.Value == userId).ToList();
+            }    
             ViewBag.Places = db.Places.ToList();
             ViewBag.Users = db.Users.ToList();
             return View(blogs);

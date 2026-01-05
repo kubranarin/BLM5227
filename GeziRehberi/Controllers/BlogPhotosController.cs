@@ -14,11 +14,29 @@ namespace GeziRehberi.Controllers
     public class BlogPhotosController : Controller
     {
         private GeziRehberiEntities db = new GeziRehberiEntities();
+        List<Blogs> blogs;
+        List<BlogPhotos> blogPhotos;
 
         [CustomAuthorize(Roles = "Admin,User")]
         public ActionResult List()
         {
-            var blogPhotos = db.BlogPhotos.ToList();
+            var userId = Convert.ToInt32(Session["UserId"]);
+            var userRole = Session["Roles"];
+            if (userRole == "Admin")
+            {
+                blogPhotos = db.BlogPhotos.ToList();
+            }
+            else
+            {
+                blogPhotos =
+                (from p in db.BlogPhotos
+                 join b in db.Blogs on p.BlogId equals b.Id
+                 where b.UserId == userId
+                 select p)
+                .ToList();
+             
+            }
+       
             ViewBag.Blogs = db.Blogs.ToList();
             return View(blogPhotos);
         }
