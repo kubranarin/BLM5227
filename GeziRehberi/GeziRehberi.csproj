@@ -401,6 +401,8 @@
     <Content Include="Content\admin\assets\images\lightbox\thumb-v-y-2.jpg" />
     <Content Include="Content\admin\assets\images\logo-light.svg" />
     <Content Include="Content\admin\assets\images\logo-mini.svg" />
+    <Content Include="Content\admin\assets\images\logo-site.png" />
+    <Content Include="Content\admin\assets\images\logo-site.svg" />
     <Content Include="Content\admin\assets\images\logo-white.svg" />
     <Content Include="Content\admin\assets\images\logo.svg" />
     <Content Include="Content\admin\assets\images\logo1.svg" />
